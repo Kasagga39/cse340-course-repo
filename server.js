@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
     res.render('home', { title });
 });
 
+app.get('/categories', (req, res) => {
+    const title = 'Service Categories';
+    res.render('categories', { title });
+});
+
 app.get('/organizations', (req, res) => {
     const title = 'Our Partner Organizations';
     res.render('organizations', { title });
