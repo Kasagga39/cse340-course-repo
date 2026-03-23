@@ -1,8 +1,10 @@
 {
-    "ext": "js css ejs env",
-    "exec": "node --env-file=.env server.js",
-    "ignore": [
-        ".git",
-        "node_modules"
-    ]
+  "watch": ["server.js", "src/"],
+  "ext": "js,ejs,json",
+  "ignore": ["node_modules", "public"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": 500,
+  "restartable": "rs"
 }
