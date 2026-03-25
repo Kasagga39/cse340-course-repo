@@ -5,7 +5,7 @@
 -- This script creates tables and inserts sample data for:
 -- 1. Organizations
 -- 2. Service Projects
--- 3. Categories
+-- 3. Categories-category
 -- =====================================================
 
 -- =====================================================
