@@ -1,136 +1,88 @@
 # CSE 340 Service Network
 
-A web application built with Node.js and Express that promotes service across the world by connecting volunteers with service opportunities in their community.
+A professional web application built with **Node.js** and **Express.js**, designed to connect volunteers with meaningful service opportunities within their communities.
 
-## Features
+## 🚀 Key Features
 
-- **Home Page**: Welcome and mission statement
-- **Organizations**: Partner organizations with contact information
-- **Projects**: Service projects available through the network
-- **About**: Information about the CSE 340 Service Network
+- **Dynamic Content**: Explore categorized service projects and organizations.
+- **Service Management**: Create, view, and edit service projects, organizations, and categories.
+- **Responsive Design**: A clean, academic, and institutional interface optimized for all devices.
+- **Global Reach**: Connecting passionate individuals with international service networks.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
-- **Templating**: EJS
-- **Styling**: CSS3
-- **Database**: PostgreSQL (optional)
-- **Deployment**: Render
+- **Backend**: Node.js & Express.js
+- **Frontend**: EJS (Embedded JavaScript) Templates
+- **Styling**: Modern CSS3 with Flexbox and Grid layouts
+- **Icons**: Lucide Icons for a clean, professional look
+- **Database**: PostgreSQL integration (via `pg` pool)
 
-## Installation
+## 📋 Installation & Setup
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v14+)
+- PostgreSQL (local or cloud instance)
 
-### Setup
+### Local Development
 
-1. Clone the repository:
-```bash
-git clone https://github.com/kalungiisaac/CSE-340-COURSE-REPO.git
-cd CSE-340-COURSE-REPO
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/kasagga39/CSE-340-COURSE-REPO.git
+   cd CSE-340-COURSE-REPO
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. Configure environment variables:
-```bash
-cp .env.example .env
-```
+3. **Configure environment:**
+   Create a `.env` file in the root directory:
+   ```env
+   NODE_ENV=development
+   PORT=3000
+   DATABASE_URL=postgres://user:password@localhost:5432/cse340
+   ```
 
-Edit `.env` file and add your configuration:
-```
-NODE_ENV=development
-PORT=3000
-```
+4. **Initialize Database:**
+   Run the setup script:
+   ```bash
+   psql -f src/models/setup.sql
+   ```
 
-4. Start the development server:
-```bash
-npm start
-```
+5. **Start the application:**
+   ```bash
+   npm start
+   ```
+   *For development with auto-reload, use `npm run dev`.*
 
-The application will be available at `http://localhost:3000`
+## 📂 Project Architecture
 
-## Development
-
-### Using Nodemon
-For automatic restart during development:
-```bash
-npm install -g nodemon
-nodemon
-```
-
-### Project Structure
-```
-├── server.js              # Express server configuration
-├── public/                # Static files (CSS, images)
-│   ├── css/
-│   ├── images/
-│               
+```text
+├── public/                # Static assets (CSS, Images)
 ├── src/
-│   ├── views/            # EJS templates
-│   │   ├── home.ejs
-│   │   ├── organizations.ejs
-│   │   ├── projects.ejs
-│   │   └── partials/     # Reusable components
-│   │       ├── header.ejs
-│   │       └── footer.ejs
-│   └── database/         # Database configurations
-└── package.json          # Dependencies
+│   ├── controllers/      # Route handlers and business logic
+│   ├── models/           # Data models and database interactions
+│   ├── middleware/       # Custom middleware (Flash messages, etc.)
+│   └── views/            # EJS templates and partials
+├── server.js              # Application entry point
+└── render.yaml            # Deployment configuration
 ```
 
-## Available Routes
+## 🌐 Routes
 
-- `/` - Home page
-- `/organizations` - Organizations page
-- `/projects` - Projects page
+- `/` - Landing Page
+- `/organizations` - List of partner organizations
+- `/projects` - Browse all service projects
+- `/categories` - Service project categories
 
-## Environment Variables
+## 📄 License
 
-```env
-NODE_ENV=development           # development or production
-PORT=3000                      # Server port
-DB_HOST=localhost             # Database host
-DB_PORT=5432                  # Database port
-DB_NAME=cse340                # Database name
-DB_USER=postgres              # Database user
-DB_PASSWORD=password          # Database password
-APP_NAME=CSE 340 Service Network
-APP_URL=http://localhost:3000
-```
+This project is licensed under the **ISC License**.
 
-## Deployment
+## 🤝 Contributing
 
-### Deploy to Render
+We welcome contributions! Please fork the repository and submit a pull request for any improvements or bug fixes.
 
-1. Push your code to GitHub
-2. Connect your repository to Render
-3. Configure environment variables in Render dashboard
-4. Deploy automatically on push
-
-The `render.yaml` file contains the deployment configuration.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the ISC License - see the LICENSE file for details.
-
-## Contact
-
-- **Project**: CSE 340 Service Network
-- **Repository**: https://github.com/kalungiisaac/CSE-340-COURSE-REPO
-
-## Support
-
-For issues and questions, please open an issue in the GitHub repository.
-
+---
+Built with by the CSE 340 Community.
