@@ -56,6 +56,8 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     res.locals.NODE_ENV = NODE_ENV;
     res.locals.currentPath = req.path;
+    res.locals.isLoggedIn = !!(req.session && req.session.user);
+    res.locals.currentUser = req.session && req.session.user ? req.session.user : null;
     next();
 });
 

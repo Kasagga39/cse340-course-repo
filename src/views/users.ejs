@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<main class="users-page">
+    <div class="breadcrumb">
+        <a href="/dashboard">Dashboard</a> <i data-lucide="chevron-right" class="icon-sm"></i> <span>Users</span>
+    </div>
+
+    <div class="content-header">
+        <h1><%= title %></h1>
+    </div>
+
+    <div class="form-container" style="max-width: 1000px;">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+            <thead>
+                <tr style="text-align: left; border-bottom: 2px solid var(--border);">
+                    <th style="padding: 1rem;">Name</th>
+                    <th style="padding: 1rem;">Email</th>
+                    <th style="padding: 1rem;">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr style="border-bottom: 1px solid var(--bg-alt);">
+                        <td style="padding: 1rem;"><%= user.name %></td>
+                        <td style="padding: 1rem;"><%= user.email %></td>
+                        <td style="padding: 1rem;"><span class="status-badge"><%= user.role_name %></span></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</main>
+<%- include('partials/footer') %>

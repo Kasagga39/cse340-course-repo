@@ -11,16 +11,15 @@
                 <label>Available Categories</label>
                 <div class="checkbox-list">
                     <% categories.forEach(category => { %>
-                    <div class="checkbox-group">
+                    <label class="checkbox-group">
                         <input
                             type="checkbox"
-                            id="category-<%= category.category_id %>"
                             name="categoryIds"
                             value="<%= category.category_id %>"
                             <%= assignedCategories.some(ac => ac.category_id === category.category_id) ? 'checked' : '' %>
                         />
-                        <label for="category-<%= category.category_id %>"><%= category.name %></label>
-                    </div>
+                        <span><%= category.name %></span>
+                    </label>
                     <% }); %>
                 </div>
             </div>

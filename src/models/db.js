@@ -27,8 +27,7 @@ const connectionString =
   })();
 
 // Use SSL by default only in production unless overridden
-const useSsl =
-  process.env.DB_SSL === "true" || process.env.NODE_ENV === "production";
+const useSsl = true;
 
 const pool = new Pool({
   connectionString,
