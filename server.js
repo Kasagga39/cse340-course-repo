@@ -58,6 +58,7 @@ app.use((req, res, next) => {
     res.locals.currentPath = req.path;
     res.locals.isLoggedIn = !!(req.session && req.session.user);
     res.locals.currentUser = req.session && req.session.user ? req.session.user : null;
+    res.locals.isAdmin = !!(req.session && req.session.user && req.session.user.role_name === 'admin');
     next();
 });
 

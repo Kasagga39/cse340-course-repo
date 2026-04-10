@@ -11,7 +11,7 @@
     <div class="projects-content-wrapper">
         <div class="content-header">
             <h2>Current Opportunities</h2>
-            <% if (isLoggedIn) { %>
+            <% if (isAdmin) { %>
                 <div class="header-actions">
                     <a href="/new-project" class="button">Add Service Project</a>
                 </div>
@@ -67,7 +67,7 @@
                                 Details
                                 <i data-lucide="arrow-right" class="icon-sm"></i>
                             </a>
-                            <% if (isLoggedIn) { %>
+                            <% if (isAdmin) { %>
                                 <a href="/edit-project/<%= project.project_id %>" class="button button-edit" title="Edit">
                                     <i data-lucide="edit-2" class="icon-sm"></i>
                                     Edit
