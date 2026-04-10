@@ -587,6 +587,65 @@ footer {
 
 /* Utility Classes */
 .icon-sm { width: 1.125rem; height: 1.125rem; }
+.icon-xs { width: 0.875rem; height: 0.875rem; }
 .mb-6 { margin-bottom: 1.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.p-4 { padding: 1rem; }
+.p-8 { padding: 2rem; }
 .flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.gap-4 { gap: 1rem; }
 .gap-2 { gap: 0.5rem; }
+.font-semibold { font-weight: 600; }
+.text-lg { font-size: 1.125rem; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.text-gray-500 { color: var(--text-muted); }
+.text-gray-600 { color: var(--secondary); }
+.text-blue-600 { color: var(--accent); }
+.text-success { color: #166534; }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.border { border: 1px solid var(--border); }
+.border-dashed { border-style: dashed; }
+.rounded { border-radius: var(--radius); }
+.bg-gray-50 { background-color: #f8fafc; }
+.hover\:underline:hover { text-decoration: underline; }
+
+.volunteering-status-container {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.volunteering-status {
+    color: #166534;
+    font-weight: 600;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.button-sm {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+.button-full {
+    width: 100%;
+}
+
+.button-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.button-primary:hover {
+    background-color: #0271ac;
+    border-color: #0271ac;
+}

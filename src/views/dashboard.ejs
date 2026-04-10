@@ -18,6 +18,36 @@
                     <a href="/users" class="button button-outline"><i data-lucide="users" class="icon-sm"></i> Manage Users</a>
                 <% } %>
             </div>
+
+            <div class="volunteered-projects-section mt-8">
+                <h3>My Volunteering Projects</h3>
+                <% if (volunteeredProjects && volunteeredProjects.length > 0) { %>
+                    <div class="volunteered-projects-list">
+                        <% volunteeredProjects.forEach(project => { %>
+                            <div class="volunteered-project-item card p-4 mb-4 flex justify-between items-center shadow-sm border rounded">
+                                <div class="project-info">
+                                    <h4 class="font-semibold text-lg"><a href="/project/<%= project.project_id %>" class="text-blue-600 hover:underline"><%= project.title %></a></h4>
+                                    <div class="flex gap-4 mt-1 text-gray-600 text-sm">
+                                        <span><i data-lucide="calendar" class="icon-xs"></i> <%= project.date ? new Date(project.date).toLocaleDateString() : 'TBD' %></span>
+                                        <span><i data-lucide="map-pin" class="icon-xs"></i> <%= project.location %></span>
+                                    </div>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="/project/<%= project.project_id %>/remove-volunteer" class="button button-outline button-sm text-red-600 border-red-200 hover:bg-red-50">
+                                        <i data-lucide="user-minus" class="icon-sm"></i>
+                                        Remove
+                                    </a>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    <div class="empty-state p-8 bg-gray-50 rounded text-center border-2 border-dashed border-gray-200">
+                        <p class="text-gray-500">You haven't volunteered for any projects yet.</p>
+                        <a href="/projects" class="button button-sm mt-4">Browse Projects</a>
+                    </div>
+                <% } %>
+            </div>
         </div>
 
         <div class="project-sidebar">

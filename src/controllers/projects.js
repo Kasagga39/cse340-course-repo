@@ -1,6 +1,15 @@
 // Import any needed model functions
 import { body, validationResult } from 'express-validator';
-import { getUpcomingProjects, getProjectDetails, getCategoriesByProjectId, createProject, updateProject } from '../models/projects.js';
+import { 
+    getUpcomingProjects, 
+    getProjectDetails, 
+    getCategoriesByProjectId, 
+    createProject, 
+    updateProject,
+    isUserVolunteering,
+    addVolunteer,
+    removeVolunteer
+} from '../models/projects.js';
 import { getAllOrganizations } from '../models/organizations.js';
 
 const NUMBER_OF_UPCOMING_PROJECTS = 50;
@@ -52,8 +61,15 @@ const showProjectDetailsPage = async (req, res, next) => {
         }
         // Get categories for this project
         const categories = await getCategoriesByProjectId(projectId);
+        
+        // Check if current user is volunteering
+        let isVolunteering = false;
+        if (req.session.user) {
+            isVolunteering = await isUserVolunteering(projectId, req.session.user.user_id);
+        }
+
         const title = 'Service Project Details';
-        res.render('project', { title, project, categories });
+        res.render('project', { title, project, categories, isVolunteering });
     } catch (error) {
         next(error);
     }
@@ -143,6 +159,50 @@ const processEditProjectForm = async (req, res, next) => {
     }
 };
 
+/**
+ * Controller to process a user volunteering for a project.
+ */
+const processVolunteerAction = async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const userId = req.session.user.user_id;
+
+        await addVolunteer(projectId, userId);
+
+        req.flash('success', 'You have successfully volunteered for this project!');
+        res.redirect(`/project/${projectId}`);
+    } catch (error) {
+        console.error('Error in processVolunteerAction:', error);
+        req.flash('error', 'Failed to volunteer for the project.');
+        res.redirect(`/project/${req.params.id}`);
+    }
+};
+
+/**
+ * Controller to process a user removing themselves as a volunteer.
+ */
+const processRemoveVolunteerAction = async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const userId = req.session.user.user_id;
+
+        await removeVolunteer(projectId, userId);
+
+        req.flash('success', 'You are no longer volunteering for this project.');
+        
+        // Check if the request came from the dashboard or the project page
+        const redirectTo = req.get('Referrer') && req.get('Referrer').includes('/dashboard') 
+            ? '/dashboard' 
+            : `/project/${projectId}`;
+            
+        res.redirect(redirectTo);
+    } catch (error) {
+        console.error('Error in processRemoveVolunteerAction:', error);
+        req.flash('error', 'Failed to remove volunteer status.');
+        res.redirect('/dashboard');
+    }
+};
+
 // Export any controller functions
 export { 
     showProjectsPage, 
@@ -151,5 +211,7 @@ export {
     processNewProjectForm, 
     projectValidation,
     showEditProjectForm,
-    processEditProjectForm
+    processEditProjectForm,
+    processVolunteerAction,
+    processRemoveVolunteerAction
 };

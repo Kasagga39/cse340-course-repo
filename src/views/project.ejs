@@ -73,8 +73,28 @@
                         </div>
                     </div>
 
-                    <% if (isAdmin) { %>
-                        <div class="project-actions">
+                    <div class="project-actions">
+                        <% if (locals.isLoggedIn) { %>
+                            <% if (locals.isVolunteering) { %>
+                                <div class="volunteering-status-container">
+                                    <p class="volunteering-status">
+                                        <i data-lucide="check-circle" class="icon-sm text-success"></i>
+                                        You are volunteering for this project
+                                    </p>
+                                    <a href="/project/<%= project.project_id %>/remove-volunteer" class="button button-outline button-full">
+                                        <i data-lucide="user-minus" class="icon-sm"></i>
+                                        Remove Myself as Volunteer
+                                    </a>
+                                </div>
+                            <% } else { %>
+                                <a href="/project/<%= project.project_id %>/volunteer" class="button button-primary button-full">
+                                    <i data-lucide="user-plus" class="icon-sm"></i>
+                                    Volunteer for this Project
+                                </a>
+                            <% } %>
+                        <% } %>
+
+                        <% if (locals.isAdmin) { %>
                             <a href="/edit-project/<%= project.project_id %>" class="button button-edit button-full">
                                 <i data-lucide="edit-2" class="icon-sm"></i>
                                 Edit Project
@@ -83,8 +103,8 @@
                                 <i data-lucide="settings" class="icon-sm"></i>
                                 Manage Categories
                             </a>
-                        </div>
-                    <% } %>
+                        <% } %>
+                    </div>
                 </div>
             </aside>
         </div>

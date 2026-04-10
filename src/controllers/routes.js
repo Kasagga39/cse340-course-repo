@@ -5,7 +5,7 @@ import {
   showOrganizationsPage, 
   showOrganizationDetailsPage, 
   showNewOrganizationForm, 
-  processNewOrganizationForm,
+  processNewOrganizationForm, 
   organizationValidation,
   showEditOrganizationForm,
   processEditOrganizationForm 
@@ -17,7 +17,9 @@ import {
   processNewProjectForm,
   projectValidation,
   showEditProjectForm,
-  processEditProjectForm 
+  processEditProjectForm,
+  processVolunteerAction,
+  processRemoveVolunteerAction
 } from './projects.js';
 import { 
   showCategoriesPage, 
@@ -63,6 +65,8 @@ router.post('/new-project', requireLogin, requireAdmin, projectValidation, proce
 router.get('/edit-project/:id', requireLogin, requireAdmin, showEditProjectForm);
 router.post('/edit-project/:id', requireLogin, requireAdmin, projectValidation, processEditProjectForm);
 router.get('/project/:id', showProjectDetailsPage);
+router.get('/project/:id/volunteer', requireLogin, processVolunteerAction);
+router.get('/project/:id/remove-volunteer', requireLogin, processRemoveVolunteerAction);
 
 // Organization routes
 router.get('/organizations', showOrganizationsPage);

@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
+import { getVolunteeredProjects } from '../models/projects.js';
 
 /**
  * Controller to show the registration form.
@@ -84,14 +85,30 @@ const processLogout = (req, res) => {
 /**
  * Controller to show the dashboard.
  */
-const showDashboard = (req, res) => {
-    const { name, email, role_name } = req.session.user;
-    res.render('dashboard', { 
-        title: 'Dashboard', 
-        name, 
-        email, 
-        role: role_name 
-    });
+const showDashboard = async (req, res) => {
+    const { user_id, name, email, role_name } = req.session.user;
+    
+    try {
+        const volunteeredProjects = await getVolunteeredProjects(user_id);
+        
+        res.render('dashboard', { 
+            title: 'Dashboard', 
+            name, 
+            email, 
+            role: role_name,
+            volunteeredProjects
+        });
+    } catch (error) {
+        console.error('Error in showDashboard:', error);
+        req.flash('error', 'Failed to load your volunteered projects.');
+        res.render('dashboard', { 
+            title: 'Dashboard', 
+            name, 
+            email, 
+            role: role_name,
+            volunteeredProjects: []
+        });
+    }
 };
 
 /**
